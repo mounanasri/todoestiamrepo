@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { TodosController } from './todos/todos.controller';
 import { TodosService } from './todos/todos.service';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { TodosService } from './todos/todos.service';
     //   synchronize: true,
     // }),
     PrismaModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController, TodosController],
   providers: [AppService, TodosService],

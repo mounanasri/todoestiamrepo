@@ -16,10 +16,7 @@ import { TodosService } from './todos.service';
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
-  @Post()
-  create(@Body() todo: Prisma.TodoCreateInput) {
-    return this.todosService.create(todo);
-  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     console.log(id);
@@ -36,9 +33,13 @@ export class TodosController {
   remove(@Param('id') id: string) {
     return this.todosService.remove(+id);
   }
+  @Post()
+  create(@Body() todo: Prisma.TodoCreateInput) {
+    return this.todosService.create(todo);
+  }
 
-  @Put()
-  update(@Query('id') id: number, @Body() todo: Prisma.TodoUpdateInput) {
+  @Put(':id')
+  update(@Param('id') id: string, @Body() todo: Prisma.TodoUpdateInput) {
     return this.todosService.update(+id, todo);
   }
 }

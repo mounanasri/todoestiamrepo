@@ -9,17 +9,10 @@ datasource db {
   provider = "postgresql"
   url      = "postgresql://postgres:mouna1234@localhost:5432/todo_app?schema=public"
 }
-
-model User {
-  user_id  Int  @default(autoincrement())
-  email String @unique
-  password String?
-}
-
 model Todo {
   todo_id          Int       @default(autoincrement()) @id
   titre   String
   statut String  
-  date   DateTime 
+  date   Date 
   description String
 }
