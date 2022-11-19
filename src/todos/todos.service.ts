@@ -26,7 +26,7 @@ export class TodosService {
   update(todo_id: number, todo: Prisma.TodoUpdateInput) {
     return this.prisma.todo.update({
       where: {
-        todo_id,
+        todo_id: todo_id,
       },
       data: todo,
     });

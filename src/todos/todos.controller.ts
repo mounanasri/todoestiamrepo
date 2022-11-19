@@ -6,7 +6,6 @@ import {
   Put,
   Param,
   Delete,
-  Query,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 // import { query } from 'express';
@@ -15,7 +14,6 @@ import { TodosService } from './todos.service';
 @Controller('todos')
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
-
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -35,11 +33,15 @@ export class TodosController {
   }
   @Post()
   create(@Body() todo: Prisma.TodoCreateInput) {
+    console.log(todo.titre);
+    console.log(todo.statut);
+    console.log(todo.description);
     return this.todosService.create(todo);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() todo: Prisma.TodoUpdateInput) {
-    return this.todosService.update(+id, todo);
+  async update(@Param('id') id: string, @Body() todo: Prisma.TodoUpdateInput) {
+    console.log(+id);
+    return await this.todosService.update(+id, todo);
   }
 }
